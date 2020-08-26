@@ -16,8 +16,6 @@ namespace NetVersion
 
         static void Main(string[] args)
         {
-            ShowMenu();
-
             if (args == null || args.Length == 0)
             {
                 Console.Write("请输入版本号(主版本号.次版本号.修订号)：");
@@ -30,14 +28,20 @@ namespace NetVersion
                 }
 
                 SetVersion(version);
-
-                return;
             }
-
-            if (args != null && args.Length == 1 && args[0].Equals("update"))
+            else if (args != null && args.Length == 1 && ValidRegex.IsMatch(args[10]))
             {
                 var maxVersion = FindMaxVersion();
                 SetVersion(maxVersion);
+            }
+            else if (args != null && args.Length == 1 && args[0].Equals("update"))
+            {
+                var maxVersion = FindMaxVersion();
+                SetVersion(maxVersion);
+            }
+            else
+            {
+                ShowMenu();
             }
         }
 
