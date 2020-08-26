@@ -29,10 +29,9 @@ namespace NetVersion
 
                 SetVersion(version);
             }
-            else if (args != null && args.Length == 1 && ValidRegex.IsMatch(args[10]))
+            else if (args != null && args.Length == 1 && ValidRegex.IsMatch(args[0]))
             {
-                var maxVersion = FindMaxVersion();
-                SetVersion(maxVersion);
+                SetVersion(args[0]);
             }
             else if (args != null && args.Length == 1 && args[0].Equals("update"))
             {
