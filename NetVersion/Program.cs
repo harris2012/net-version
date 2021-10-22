@@ -12,7 +12,7 @@ namespace NetVersion
     {
         static readonly Regex ValidRegex = new Regex(@"\d+\.\d+\.\d+");
 
-        static readonly Regex VersionRegex = new Regex(@"\n    \<Version\>((\d+)\.(\d+)\.(\d+))\</Version\>");
+        static readonly Regex VersionRegex = new Regex(@"\<Version\>((\d+)\.(\d+)\.(\d+))\</Version\>");
 
         static void Main(string[] args)
         {
@@ -54,7 +54,7 @@ namespace NetVersion
             {
                 var content = File.ReadAllText(item.FullName);
 
-                content = VersionRegex.Replace(content, $"\n    <Version>{version}</Version>");
+                content = VersionRegex.Replace(content, $"<Version>{version}</Version>");
 
                 File.WriteAllText(item.FullName, content, Encoding.UTF8);
             }
